@@ -60,11 +60,11 @@ object Assignment20 {
 
     //To get the distribution of the total number of air-travelers per year
     val TotAirTravellers = spark.sql("select year, count(TravelMode) from HolidayTrip where TravelMode = 'airplane' group by year ")
-//    TotAirTravellers.show()
+    TotAirTravellers.show()
 
     //the total air distance covered by each user per year
     val TotAirDistCovered = spark.sql("select UserId, year, sum(Distance) from HolidayTrip where TravelMode = 'airplane' group by year, UserId order by UserId, year ")
-  //  TotAirDistCovered.show()
+    TotAirDistCovered.show()
 
     //Which user has travelled the largest distance till date
      val LargestDistanceUser = spark.sql("select sum(Distance) as MaxDistance, UserId from HolidayTrip group by UserId order by MaxDistance desc").take(1)
